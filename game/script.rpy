@@ -3,21 +3,37 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+init python:
+    def dragFunction(dragged_item, dropped_on):
+        print("hello")
+
 screen cards:
     image Solid("#ffffff")
 
     draggroup:
         drag:
-            drag_name: "sound"
+            drag_name "sound"
+            alternate Help()
             align(0.5,0.3)
+            dragged dragFunction
             drag_raise True
             image Solid("#ff9bf4") xysize(250, 250)
             
         drag:
-            drag_name: "kana"
+            drag_name "kana"
+            alternate Help()
             align(0.5,0.7)
+            dragged dragFunction
             drag_raise True
             image Solid("#ff9b33") xysize(250, 250)
+
+    #add kana_draggroup
+
+default sound_drag = Drag(d=Solid("#ff9bf4"), xysize=(250, 250), drag_name ="sound",drag_raise =True,align= (0.5,0.3))
+default kana_drag = Drag(d=Solid("#ff9b33"), xysize=(250, 250), drag_name ="kana",drag_raise =True,align= (0.5,0.7))
+default kana_draggroup = DragGroup(sound_drag,kana_drag)
+
+define config.longpress_duration = 0.5
 
 
 

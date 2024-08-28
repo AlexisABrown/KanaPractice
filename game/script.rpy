@@ -5,7 +5,19 @@
 
 init python:
     def dragFunction(dragged_item, dropped_on):
-        print("hello")
+      if dropped_on is not None:
+        # if dragged is the same type or doesn't match print error
+        if dragged_item[0].drag_name == dropped_on.drag_name:
+            #dragged_item[0].droppable = False
+            print("error")
+        # if dragged is a different type and a correct match print correct
+        if dragged_item[0].drag_name != dropped_on.drag_name:
+            dragged_item[0].snapped(dropped_on.x, dropped_on.y)
+            print("correct")
+        #else print unknown error
+        else:
+            print("unknown error")
+
 
 screen cards:
     image Solid("#ffffff")
@@ -17,6 +29,7 @@ screen cards:
             align(0.5,0.3)
             dragged dragFunction
             drag_raise True
+            droppable True
             image Solid("#ff9bf4") xysize(250, 250)
             
         drag:
@@ -25,11 +38,13 @@ screen cards:
             align(0.5,0.7)
             dragged dragFunction
             drag_raise True
+            droppable True
             image Solid("#ff9b33") xysize(250, 250)
 
     #add kana_draggroup
 
 default sound_drag = Drag(d=Solid("#ff9bf4"), xysize=(250, 250), drag_name ="sound",drag_raise =True,align= (0.5,0.3))
+#default kana_drag = Drag(d=Solid("#ff9b33"), xysize=(250, 250), drag_name ="kana",drag_raise =True,align= (0.5,0.5))
 default kana_drag = Drag(d=Solid("#ff9b33"), xysize=(250, 250), drag_name ="kana",drag_raise =True,align= (0.5,0.7))
 default kana_draggroup = DragGroup(sound_drag,kana_drag)
 

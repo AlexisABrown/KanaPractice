@@ -2,13 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 48: invalid syntax
-    Drag(d=Solid"#ff9bf4", xysize=(250, 250)), drag_name = "sound",drag_raise = True,align = (0.3,0.5))
-                 ^
-
-File "game/script.rpy", line 49: invalid syntax
-    Drag(d=Solid"#ff9b33", xysize=(250, 250)), drag_name = "kana",drag_raise = True,align = (0.5,0.5))
-                 ^
+File "game/script.rpy", line 42: Indentation mismatch.
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Mon Sep  2 12:34:13 2024
+Tue Sep  3 13:31:51 2024

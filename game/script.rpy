@@ -4,8 +4,17 @@
 # name of the character.
 
 init python:
-    def joined_drag(item_dragged):
-      return [(item_dragged, 0.0), (match_drag, 0.0)] #the numbers show how offset the items should be from each other
+#FIX: how to add print statements to in game dialogue box
+
+    def drop_control(current_drag, dragged_item):
+      #this may interfere with other drag properties such as drag_joined
+      print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
+        
+    # joined drag is for moving cards together, will likely not use
+    # if in use add drag_joined = joined_drag to all drag cards including match_drag
+    #def joined_drag(item_dragged):
+      #return [(item_dragged, 0.0), (test_drag, 0.0)] 
+      #the numbers show how offset the items should be from each other
 
     def dragFunction(dragged_item, dropped_on):
       if dropped_on is not None:
@@ -21,6 +30,8 @@ init python:
             kana_draggroup.remove(sound_drag)
             kana_draggroup.remove(kana_drag)
             print("correct")
+            #figure out how to add new matches or call a new screen after a certain score
+
         #else print unknown error
         else:
             print("unknown error")
@@ -29,30 +40,12 @@ init python:
 screen cards:
     image Solid("#ffffff")
 
-    #draggroup:
-        #drag:
-            #drag_name "sound"
-            #alternate Help()
-            #align(0.5,0.3)
-            #dragged dragFunction
-            #drag_raise True
-            #droppable True
-            #image Solid("#ff9bf4") xysize(250, 250)
-            
-        #drag:
-            #drag_name "kana"
-            #alternate Help()
-            #align(0.5,0.7)
-            #dragged dragFunction
-            #drag_raise True
-            #droppable True
-            #image Solid("#ff9b33") xysize(250, 250)
 
     add kana_draggroup
 
-define sound_drag = Drag(d=Solid("#ff9bf4", xysize=(250, 250)), drag_name = "sound",drag_raise = True,dragged = dragFunction, drag_joined = joined_drag, droppable = True, align = (0.3,0.5))
-define kana_drag = Drag(d=Solid("#ff9b33", xysize=(250, 250)), drag_name = "kana",drag_raise = True, dragged = dragFunction,drag_joined = joined_drag, droppable = True, align = (0.5,0.5))
-define test_drag = Drag(d=Solid("#ff9b33", xysize=(250, 250)), drag_name = "test",drag_raise = True, dragged = dragFunction,drag_joined = joined_drag, droppable = True, align = (0.7,0.5))
+define sound_drag = Drag(d=Solid("#ff9bf4", xysize=(250, 250)), drag_name = "sound",drag_raise = True, dragged = dragFunction, droppable = True, align = (0.3,0.5))
+define kana_drag = Drag(d=Solid("#ff9b33", xysize=(250, 250)), drag_name = "kana",drag_raise = True, dragged = dragFunction, droppable = True, align = (0.5,0.5))
+define test_drag = Drag(d=Solid("#ff9b33", xysize=(250, 250)), drag_name = "test",drag_raise = True, drop_allowable=drop_control, dragged = dragFunction, droppable = True, align = (0.7,0.5))
 define kana_draggroup = DragGroup(sound_drag,kana_drag,test_drag)
 
 define config.longpress_duration = 0.5
@@ -60,9 +53,6 @@ define config.longpress_duration = 0.5
 
 
 define e = Character("Eileen")
-
-#speech bubble test
-define l = Character(None, image="lucy", kind=bubble)
 
 
 # The game starts here.
@@ -87,9 +77,12 @@ label start:
 
     e "Once you add a story, pictures, and music, you can release it to the world!"
 
-    l "Here's a speech bubble."
 
     call screen cards
+
+    #speech bubble test
+    define l = Character(None, image="lucy", kind=bubble)
+    l "Here's a speech bubble."
 
     # This ends the game.
 

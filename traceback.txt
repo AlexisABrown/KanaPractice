@@ -1,18 +1,16 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 92, in script
+  File "game/script.rpy", line 93, in script
     call screen cards
   File "renpy/common/000statements.rpy", line 671, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/script.rpy", line 8, in joined_drag
-    return [(item_dragged, 0.0), (match_drag, 0.0)] #the numbers show how offset the items should be from each other
-NameError: name 'match_drag' is not defined
+ValueError: not enough values to unpack (expected 3, got 2)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 92, in script
+  File "game/script.rpy", line 93, in script
     call screen cards
   File "C:\Users\Lex\Downloads\renpy-8.2.3-sdk\renpy\ast.py", line 1971, in execute
     self.call("execute")
@@ -44,13 +42,11 @@ Full traceback:
     return super(DragGroup, self).event(ev, x, y, st)
   File "C:\Users\Lex\Downloads\renpy-8.2.3-sdk\renpy\display\layout.py", line 1202, in event
     rv = i.event(ev, x - xo, y - yo, cst)
-  File "C:\Users\Lex\Downloads\renpy-8.2.3-sdk\renpy\display\dragdrop.py", line 767, in event
-    joined_offsets = self.drag_joined(self)
-  File "game/script.rpy", line 8, in joined_drag
-    return [(item_dragged, 0.0), (match_drag, 0.0)] #the numbers show how offset the items should be from each other
-NameError: name 'match_drag' is not defined
+  File "C:\Users\Lex\Downloads\renpy-8.2.3-sdk\renpy\display\dragdrop.py", line 782, in event
+    for i, xo, yo in joined_offsets:
+ValueError: not enough values to unpack (expected 3, got 2)
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.2.3.24061702
 JapanesePractice 1.0
-Mon Sep  2 13:24:45 2024
+Tue Sep  3 13:05:18 2024

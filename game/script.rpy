@@ -4,37 +4,33 @@
 # name of the character.
 
 init python:
-#figure out how to import time into the init block
-import time
-#FIX: how to add print statements to in game dialogue box
-#Create arrays and have the numbers match up for value checking
+  import time
+   # timeout variable can be omitted, if you use specific value in the while condition
+  timeout = 15 #seconds
+  timeout_start = time.time()
+  #figure out how to import time into the init block
+  #FIX: how to add print statements to in game dialogue box
+  #Create arrays and have the numbers match up for value checking
 
 
-    def drop_control(current_drag, dragged_item):
+  def drop_control(current_drag, dragged_item):
       #this may interfere with other drag properties such as drag_joined
-      print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
+      #print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
+      return
 
-    def dragFunction(dragged_item, dropped_on):
+  def dragFunction(dragged_item, dropped_on):
 
       global card_level
       card_level = 0
       level_array = ["test1","test2"]
 
-    # timeout variable can be omitted, if you use specific value in the while condition
-    timeout = 15 #seconds
-
-    timeout_start = time.time()
-
-     while time.time() < timeout_start + timeout:
+      while time.time() < timeout_start + timeout:
        if dropped_on is not None:
         # if dragged is the same type or doesn't match print error
-          if dragged_item[0].drag_name == dropped_on.drag_name:
-            #dragged_item[0].droppable = False
-            print("error")
         # if dragged is a different type and a correct match print correct
           if dragged_item[0].drag_name == "sound" and dropped_on.drag_name == "kana":
             dragged_item[0].snap(dropped_on.x, dropped_on.y, 0.5)
-            match_drag = Drag(d=Solid("#80e5ff", xysize=(500,500)), drag_name = "match_drag", drag_raise = True, dragged= dragFunction, align=(0.9, 0.5))
+            match_drag = Drag(d=Solid("#80e5ff", xysize=(500,500)), drag_name = "match_drag", drag_raise = False, dragged= dragFunction, align=(0.9, 0.5))
             kana_draggroup.add(match_drag)
             kana_draggroup.add(sound_drag)
             kana_draggroup.add(kana_drag)
@@ -43,17 +39,18 @@ import time
             #make match drags appear at a slightly higher spot each time
             #kana_draggroup.remove(sound_drag)
             #kana_draggroup.remove(kana_drag)
-            print("correct")
+      
               #if card_level < 2: #change to end of timer. when timer is done matches have to be a certain height. award extra points for reaching larger heights 
                 #renpy.jump(level_array[card_level])
                 #card_level += card_level
                 #move to next label after this
                 #renpy.jump(start)
-            #figure out how to add new matches or call a new screen after a certain score
 
         #else print unknown error
           else:
             print("unknown error")
+       renpy.jump(level_array[card_level])
+
 
 
 screen cards:

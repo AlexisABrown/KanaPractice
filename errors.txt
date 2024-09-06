@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 6: python block expects a non-empty block.
-    init python:
-                ^
-
-File "game/script.rpy", line 7: expected statement.
-    import time
-               ^
+File "game/script.rpy", line 20: expected an indented block
+    def dragFunction(dragged_item, dropped_on):
+     ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Wed Sep  4 20:37:26 2024
+Thu Sep  5 15:15:43 2024

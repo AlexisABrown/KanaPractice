@@ -13,8 +13,7 @@ init python:
   #Create arrays and have the numbers match up for value checking
 
 
-  def drop_control(current_drag, dragged_item):
-      #this may interfere with other drag properties such as drag_joined
+  def drop_control(current_drag, dragged_item): #this may interfere with other drag properties such as drag_joined
       #print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
       return
 
@@ -34,9 +33,9 @@ init python:
             kana_draggroup.add(match_drag)
             kana_draggroup.add(sound_drag)
             kana_draggroup.add(kana_drag)
-            #Find a way to add and remove drags as matches are made. Make drag and drop system stop if matches fill a certain height 
-            #create system where drags cannot be moved upward
-            #make match drags appear at a slightly higher spot each time
+            print(time)
+      
+            #make match drags appear at a random spot each time
             #kana_draggroup.remove(sound_drag)
             #kana_draggroup.remove(kana_drag)
       
@@ -49,6 +48,7 @@ init python:
         #else print unknown error
           else:
             print("unknown error")
+       card_level = 1
        renpy.jump(level_array[card_level])
 
 
@@ -61,8 +61,8 @@ screen cards:
 
 define sound_drag = Drag(d=Solid("#ff9bf4", xysize=(250, 250)), drag_name = "sound",drag_raise = True, dragged = dragFunction, droppable = True, align = (0.3,0.5))
 define kana_drag = Drag(d=Solid("#ff9b33", xysize=(250, 250)), drag_name = "kana",drag_raise = True, dragged = dragFunction, droppable = True, align = (0.5,0.5))
-define test_drag = Drag(d=Solid("#ff9b33", xysize=(250, 250)), drag_name = "test",drag_raise = True, drop_allowable=drop_control, dragged = dragFunction, droppable = True, align = (0.7,0.5))
-define kana_draggroup = DragGroup(sound_drag,kana_drag,test_drag)
+define test_drag = Drag(d=Solid("#33ff9b", xysize=(250, 250)), drag_name = "test",drag_raise = True, drop_allowable=drop_control, dragged = dragFunction, droppable = True, align = (0.7,0.5))
+define kana_draggroup = DragGroup(sound_drag,kana_drag, test_drag)
 
 define config.longpress_duration = 0.5
 

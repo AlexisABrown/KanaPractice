@@ -10,4 +10,6 @@ label vowel_intro:
     e "Say ah for a. And oh for o."
     e "E is pronounced "
 
+    call screen cards
+
     return 

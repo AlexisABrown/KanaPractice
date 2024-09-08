@@ -1,6 +1,7 @@
 init python:
   import time
   import datetime
+  
   #figure out how to import time into the init block
   #FIX: how to add print statements to in game dialogue box
   #Create arrays and have the numbers match up for value checking
@@ -22,19 +23,14 @@ init python:
         time.sleep(1)
  
         # Reduces total time by one second
-        total_seconds -= 1
+        seconds -= 1
  
     print("Bzzzt! The countdown is at zero seconds!")
 
   def drop_control(current_drag, dragged_item): #this may interfere with other drag properties such as drag_joined
-      #print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
+      print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
 
-  def dragFunction(dragged_item, dropped_on):
-
-      global card_level
-      card_level = 0
-
-  def scoring(card_level)
+  def scoring(card_level):
       level_array = ["test1","test2"]
       card_level = card_level + 1
       renpy.jump(level_array[card_level])
@@ -57,8 +53,6 @@ init python:
             kana_draggroup.add(sound_drag)
             kana_draggroup.add(kana_drag)
       
-            #make match drags appear at a random spot each time
-      
               #if card_level < 2: #change to end of timer. when timer is done matches have to be a certain height. award extra points for reaching larger heights 
                 #renpy.jump(level_array[card_level])
                 #card_level += card_level
@@ -69,6 +63,11 @@ init python:
           else:
             print("unknown error")
        countdown(10)
+
+  def dragFunction(dragged_item, dropped_on):
+      global card_level
+      card_level = 0
+      check_for_match(dragged_item, dropped_on)
 
 
 
@@ -84,3 +83,18 @@ define test_drag = Drag(d=Solid("#33ff9b", xysize=(250, 250)), drag_name = "test
 define kana_draggroup = DragGroup(sound_drag,kana_drag, test_drag)
 
 define config.longpress_duration = 0.5
+
+#Card Sets refrence: https://www.tofugu.com/japanese/learn-hiragana/
+#vowels
+#k sounds
+#s sounds
+#t sounds
+#n sounds
+#h sounds
+#m sounds
+#y sounds
+#r sounds
+#w sounds
+#Dakuten 
+#Han-Dakuten
+#combination hirigana 

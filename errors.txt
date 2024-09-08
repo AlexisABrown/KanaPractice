@@ -2,7 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/cards.rpy", line 70: Indentation mismatch.
+File "game/cards.rpy", line 67: Indentation mismatch.
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Fri Sep  6 18:48:03 2024
+Sat Sep  7 16:55:00 2024

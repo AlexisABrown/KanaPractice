@@ -2,7 +2,8 @@ init python:
   import time
   import datetime
   
-  #figure out how to import time into the init block
+  global card_level
+  card_level = 0 
   #FIX: how to add print statements to in game dialogue box
   #Create arrays and have the numbers match up for value checking
 
@@ -17,7 +18,7 @@ init python:
         timer = datetime.timedelta(seconds)
         
         # Prints the time left on the timer
-        print(timer, end="\r")
+        print(seconds, end="\r")
  
         # Delays the program one second
         time.sleep(1)
@@ -26,9 +27,6 @@ init python:
         seconds -= 1
  
     print("Bzzzt! The countdown is at zero seconds!")
-
-  def drop_control(current_drag, dragged_item): #this may interfere with other drag properties such as drag_joined
-      print(f"current_drag={current_drag.drag_name}, dragged_item={dragged_item[0].drag_name}")
 
   def scoring(card_level):
       level_array = ["test1","test2"]
@@ -52,6 +50,7 @@ init python:
             kana_draggroup.add(match_drag)
             kana_draggroup.add(sound_drag)
             kana_draggroup.add(kana_drag)
+            scoring(card_level)
       
               #if card_level < 2: #change to end of timer. when timer is done matches have to be a certain height. award extra points for reaching larger heights 
                 #renpy.jump(level_array[card_level])
@@ -62,12 +61,14 @@ init python:
         #else print unknown error
           else:
             print("unknown error")
-       countdown(10)
 
-  def dragFunction(dragged_item, dropped_on):
-      global card_level
-      card_level = 0
+  def drop_control(current_drag, dragged_item): #this may interfere with other drag properties such as drag_joined
+      print(f"dragged_item={dragged_item[0].drag_name}")
       check_for_match(dragged_item, dropped_on)
+
+  def dragFunction(dragged_item, dropped_on): #for what will happen when the player starts moving cards 
+      countdown(10)
+      #check_for_match(dragged_item, dropped_on)
 
 
 

@@ -2,7 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/cards.rpy", line 67: Indentation mismatch.
+File "game/cards.rpy", line 78: 'define' is not a keyword argument or valid child of the screen statement.
+    define e = Character("Eileen")
+          ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Sat Sep  7 16:55:00 2024
+Tue Oct 29 18:15:02 2024

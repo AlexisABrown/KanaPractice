@@ -2,7 +2,8 @@ init python:
   import time
   import datetime
   
-  global card_level
+  my_variable = "Hello, world!"
+  card_level
   card_level = 0 
   #FIX: how to add print statements to in game dialogue box
   #Create arrays and have the numbers match up for value checking
@@ -35,10 +36,10 @@ init python:
 
   def check_for_match(dragged_item, dropped_on):
      # timeout variable can be omitted, if you use specific value in the while condition
-     #timeout = 15 #seconds
-     #timeout_start = time.time()
-     #print(timeout)
-     #while time.time() < timeout_start + timeout:
+     timeout = 15 #seconds
+     timeout_start = time.time()
+     print(timeout)
+     while time.time() < timeout_start + timeout:
        if dropped_on is not None:
         # if dragged is the same type or doesn't match print error
         # if dragged is a different type and a correct match print correct
@@ -64,17 +65,20 @@ init python:
 
   def drop_control(current_drag, dragged_item): #this may interfere with other drag properties such as drag_joined
       print(f"dragged_item={dragged_item[0].drag_name}")
-      check_for_match(dragged_item, dropped_on)
 
   def dragFunction(dragged_item, dropped_on): #for what will happen when the player starts moving cards 
       countdown(10)
-      #check_for_match(dragged_item, dropped_on)
+      check_for_match(dragged_item, dropped_on)
 
 
 
 screen cards:
     image Solid("#ffffff")
 
+    define e = Character("Eileen")
+
+    # Display the variable in a textbox
+    e "Variable is [my_variable]"
 
     add kana_draggroup
 
